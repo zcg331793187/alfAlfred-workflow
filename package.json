@@ -1,0 +1,11 @@
+{
+  "name": "alfred-workflow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://zcg331793187@github.com/zcg331793187/alfAlfred-workflow.git",
+  "author": "zcg331793187 <zhoucaiguang@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "alfred-workflow-nodejs": "^2.0.1"
+  }
+}
