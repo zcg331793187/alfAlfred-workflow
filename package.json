@@ -6,6 +6,21 @@
   "author": "zcg331793187 <zhoucaiguang@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "alfred-workflow-nodejs": "^2.0.1"
+    "@types/node": "^6.0.73",
+    "alfred-workflow-nodejs": "^2.0.1",
+    "crawler": "^1.0.5",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.4",
+    "tslint": "^3.15.1",
+    "typescript": "^2.3.2",
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "test": "tsc && mocha build/test",
+    "build": "tsc",
+    "build:watch": "nodemon --watch ./lib --exec tsc",
+    "start": "node build/index.js",
+    "dev-server": "nodemon -w lib -x ts-node lib/index.ts",
+    "lint": "tslint lib/**/*.ts"
   }
 }
