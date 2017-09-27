@@ -41,19 +41,5 @@ export class CnpmApi extends BaseApi {
 
     }
 
-    async run(tag: string, query: string) {
-
-        let that: any = this;
-
-        let data = await that[tag](query);
-
-
-        console.log(data);
-
-        // let query = 'http';
-
-
-    }
-
 
 }

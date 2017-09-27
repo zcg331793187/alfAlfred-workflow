@@ -18,7 +18,7 @@
   "scripts": {
     "test": "tsc && mocha build/test",
     "build": "tsc",
-    "build:watch": "nodemon --watch ./lib --exec tsc",
+    "build:watch": "tsc -w",
     "start": "node build/index.js",
     "dev-server": "nodemon -w lib -x ts-node lib/index.ts",
     "lint": "tslint lib/**/*.ts"

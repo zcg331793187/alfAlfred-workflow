@@ -4,9 +4,9 @@ let actionHandler = AlfredNode.actionHandler;
 
 function tool() {
     let argv = process.argv[2];
-    let query = process.argv[3];
-    // argv = 'CnpmApi:keyword';
-    // query = 'ajax';
+    let query = encodeURI(process.argv[3]);
+    argv = 'AcfunApi:keyword';
+    query = '%E9%BB%91%E5%8F%91';
     let newArgv = argv.split(':');
 
 
@@ -24,10 +24,10 @@ function tool() {
 
 (async function main() {
 
+
     let {apiName, action, query, argv} = tool();
     let api = new apis[apiName]();
-    // await api[action]()
-    // console.log();
+
     if (!api[action]) {
         throw 'error need action';
     }

@@ -4,16 +4,23 @@ export class BaseApi {
     alfredNode: { actionHandler: any, workflow: { feedback: any, addItem: any }, Item: any, run: any } = alfredWorkflowNodejs;
     crawler = new Crawler({});
 
-    async run(tag: any, query: any) {
-        throw new Error('must overwrite this method');
-    }
 
+    protected async run(tag: string, query: string) {
+
+        let that: any = this;
+        let Item = this.alfredNode.Item;
+        let data: any[] = await that[tag](query);
+
+        await this.done(data);
+
+
+    }
 
     constructor() {
 
     }
 
-   async  done(data: any[]) {
+    async  done(data: any[]) {
 
         let Item = this.alfredNode.Item;
         if (data.length == 0) {
