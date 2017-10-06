@@ -7,30 +7,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("./api/index");
 let AlfredNode = require('alfred-workflow-nodejs');
 let actionHandler = AlfredNode.actionHandler;
 function tool() {
     let argv = process.argv[2];
-    let query = encodeURI(process.argv[3]);
+    let argvQuery = String(process.argv[3]).split('|') || [];
+    let queryString, pageNo;
+    let query = encodeURI(argvQuery[0]);
+    if (argvQuery[1]) {
+        pageNo = Number(argvQuery[1]);
+    }
+    else {
+        pageNo = 1;
+    }
     // argv = 'AcfunApi:keyword';
     // query = '%E9%BB%91%E5%8F%91';
+    // pageNo = '1';
     let newArgv = argv.split(':');
     let apiName = newArgv[0];
     let action = newArgv[1];
     if (!apiName || !action) {
         throw 'need two argv';
     }
-    return { apiName, action, query, argv };
+    return { apiName, action, query, pageNo, argv };
 }
 (function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        let { apiName, action, query, argv } = tool();
+        let { apiName, action, query, argv, pageNo } = tool();
         let api = new index_1.apis[apiName]();
         if (!api[action]) {
             throw 'error need action';
         }
-        actionHandler.onAction(argv, yield api.run(action, query));
+        actionHandler.onAction(argv, yield api.run(action, { query, pageNo }));
         AlfredNode.run();
     });
 })();

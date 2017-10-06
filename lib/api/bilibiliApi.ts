@@ -4,7 +4,7 @@ export class BilibiliApi extends BaseApi {
         super();
     }
 
-    async top(query: string): Promise<any> {
+    async top(query: any): Promise<any> {
 
 
         return new Promise((resolve: any, reject: any) => {
@@ -47,7 +47,7 @@ export class BilibiliApi extends BaseApi {
 
     }
 
-    async keyword(query: string): Promise<any> {
+    async keyword({query,pageNo}: any): Promise<any> {
 
 
         return new Promise((resolve: any, reject: any) => {
@@ -83,9 +83,6 @@ export class BilibiliApi extends BaseApi {
 
 
     }
-
-
-
 
 
 }

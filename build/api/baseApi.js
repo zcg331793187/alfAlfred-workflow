@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const alfredWorkflowNodejs = require('alfred-workflow-nodejs');
 const Crawler = require('crawler');
 class BaseApi {
@@ -16,7 +17,10 @@ class BaseApi {
     }
     run(tag, query) {
         return __awaiter(this, void 0, void 0, function* () {
-            throw new Error('must overwrite this method');
+            let that = this;
+            let Item = this.alfredNode.Item;
+            let data = yield that[tag](query);
+            yield this.done(data);
         });
     }
     done(data) {

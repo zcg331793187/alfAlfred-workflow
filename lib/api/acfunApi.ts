@@ -4,7 +4,7 @@ export class AcfunApi extends BaseApi {
         super();
     }
 
-    async keyword(query: string): Promise<any> {
+    async keyword({query, pageNo}: any): Promise<any> {
 
 
         return new Promise((resolve: any, reject: any) => {
@@ -13,9 +13,10 @@ export class AcfunApi extends BaseApi {
                 this.crawler.queue([{
                     'Content-Type': 'application/json; charset=UTF-8',
                     jQuery: false,
-                    uri: `http://search.aixifan.com/search?q=${query}`,
+                    uri: `http://search.aixifan.com/search?q=${query}&isArticle=1&pageNo=${pageNo}`,
                     callback: function (error: any, res: any, done: any) {
 
+                        // console.log(res);
                         let needData: any[] = [];
                         if (error) {
                             reject(error);
@@ -47,10 +48,6 @@ export class AcfunApi extends BaseApi {
 
 
     }
-
-
-
-
 
 
 }

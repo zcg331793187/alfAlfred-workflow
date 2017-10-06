@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const cnpmApi_1 = require("./cnpmApi");
 const runoobApi_1 = require("./runoobApi");
 const npmApi_1 = require("./npmApi");

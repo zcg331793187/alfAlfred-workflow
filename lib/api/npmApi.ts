@@ -18,7 +18,7 @@ export class NpmApi extends BaseApi {
 
     }
 
-    async keyword(query: string) {
+    async keyword({query,pageNo}: any) {
 
 
         return new Promise((resolve: any, reject: any) => {

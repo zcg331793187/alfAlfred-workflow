@@ -4,7 +4,7 @@ export class RunoobApi extends BaseApi {
         super();
     }
 
-    async keyword(query: string): Promise<any> {
+    async keyword({query,pageNo}: any): Promise<any> {
 
 
         return new Promise((resolve: any, reject: any) => {

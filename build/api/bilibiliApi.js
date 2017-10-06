@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const baseApi_1 = require("./baseApi");
 class BilibiliApi extends baseApi_1.BaseApi {
     constructor() {
@@ -42,7 +43,7 @@ class BilibiliApi extends baseApi_1.BaseApi {
             });
         });
     }
-    keyword(query) {
+    keyword({ query, pageNo }) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 this.crawler.queue([{
@@ -68,14 +69,6 @@ class BilibiliApi extends baseApi_1.BaseApi {
                         }
                     }]);
             });
-        });
-    }
-    run(tag, query) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let that = this;
-            let Item = this.alfredNode.Item;
-            let data = yield that[tag](query);
-            yield this.done(data);
         });
     }
 }

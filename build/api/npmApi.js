@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const Crawler = require('crawler');
 const crawler = new Crawler({
     maxConnections: 2
@@ -22,29 +23,35 @@ class NpmApi extends baseApi_1.BaseApi {
     }
     run() {
         return __awaiter(this, void 0, void 0, function* () {
-            let query = 'http';
-            crawler.queue([{
-                    uri: `https://www.npmjs.com/search?q=${query}&page=1&ranking=optimal`,
-                    callback: function (error, res, done) {
-                        if (error) {
-                            console.log(error);
-                        }
-                        else {
-                            let $ = res.$;
-                            let listObj = $('.package-details');
+        });
+    }
+    keyword({ query, pageNo }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                this.crawler.queue([{
+                        uri: `https://www.npmjs.com/search?q=${query}&page=1&ranking=optimal`,
+                        callback: function (error, res, done) {
                             let needData = [];
-                            listObj.each(function (idx, ele) {
-                                let url = ele.children[0].children[0].attribs.href;
-                                let title = ele.children[0].children[0].children[0].data ? ele.children[0].children[0].children[0].data : '';
-                                let arg = ele.children[2].children[1].children[0].data;
-                                if (url && title && arg) {
-                                    needData.push({ url, title, arg });
-                                }
-                            });
+                            if (error) {
+                                reject(error);
+                            }
+                            else {
+                                let $ = res.$;
+                                let listObj = $('.package-details');
+                                listObj.each(function (idx, ele) {
+                                    let url = ele.children[0].children[0].attribs.href;
+                                    let title = ele.children[0].children[0].children[0].data ? ele.children[0].children[0].children[0].data : '';
+                                    let arg = ele.children[2].children[1].children[0].data;
+                                    if (url && title && arg) {
+                                        needData.push({ url, title, arg });
+                                    }
+                                });
+                            }
+                            done();
+                            resolve(needData);
                         }
-                        done();
-                    }
-                }]);
+                    }]);
+            });
         });
     }
 }

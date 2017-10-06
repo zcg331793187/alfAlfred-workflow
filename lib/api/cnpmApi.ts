@@ -4,7 +4,7 @@ export class CnpmApi extends BaseApi {
         super();
     }
 
-    async keyword(query: string) {
+    async keyword({query,pageNo}: any) {
 
 
         return new Promise((resolve: any, reject: any) => {

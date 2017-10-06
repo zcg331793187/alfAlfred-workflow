@@ -5,7 +5,7 @@ export class BaseApi {
     crawler = new Crawler({});
 
 
-    protected async run(tag: string, query: string) {
+    protected async run(tag: string, query: any) {
 
         let that: any = this;
         let Item = this.alfredNode.Item;
